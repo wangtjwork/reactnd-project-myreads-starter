@@ -29,14 +29,14 @@ class SearchPage extends React.Component {
   }
 
   addBook = (chosenBook, shelf) => {
-    this.setState((state) => {
+    this.setState((state) => ({
       matchedBooks: state.matchedBooks.map((book) => {
         if (book.id === chosenBook.id) {
           book.shelf = shelf;
         }
         return book;
       })
-    });
+    }));
     this.props.addBook(chosenBook, shelf);
   }
 
