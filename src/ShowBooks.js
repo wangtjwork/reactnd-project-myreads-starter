@@ -5,7 +5,8 @@ import BookShelf from './BookShelf';
 
 class ShowBooks extends React.Component {
   static propTypes = {
-    books: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
+    updateBook: PropTypes.func.isRequired
   }
 
   render() {
@@ -16,9 +17,9 @@ class ShowBooks extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf books={this.props.books.filter((book) => book.shelf === 'currentlyReading')} shelfName="Currently Reading" />
-            <BookShelf books={this.props.books.filter((book) => book.shelf === 'wantToRead')} shelfName="Want to Read" />
-            <BookShelf books={this.props.books.filter((book) => book.shelf === 'read')} shelfName="Read" />
+            <BookShelf books={this.props.books.filter((book) => book.shelf === 'currentlyReading')} shelfName="Currently Reading" updateBook={this.props.updateBook}/>
+            <BookShelf books={this.props.books.filter((book) => book.shelf === 'wantToRead')} shelfName="Want to Read" updateBook={this.props.updateBook}/>
+            <BookShelf books={this.props.books.filter((book) => book.shelf === 'read')} shelfName="Read" updateBook={this.props.updateBook}/>
           </div>
         </div>
         <div className="open-search">
