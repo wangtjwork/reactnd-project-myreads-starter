@@ -16,7 +16,13 @@ class SearchPage extends React.Component {
     // lead to matchedBooks change
     if (this.state.query) {
       BooksAPI.search(this.state.query).then((books) => {
-        console.log(books);
+        books = books.map((book) => {
+          const sameBook = this.props.booksOnShelf.filter((bookOnShelf) => bookOnShelf.id === book.id);
+          if (sameBook.length > 0) {
+            book.shelf = sameBook[0].shelf;
+          }
+          return book;
+        })
         this.setState({
           matchedBooks: books
         });
@@ -37,6 +43,7 @@ class SearchPage extends React.Component {
         return book;
       })
     }));
+    debugger
     this.props.addBook(chosenBook, shelf);
   }
 
